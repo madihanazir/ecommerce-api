@@ -6,8 +6,8 @@
 
 ### 1. Clone the repository
 ```sh
-git clone <your-repository-url>
-cd <your-project-folder>
+git clone <(https://github.com/madihanazir/ecommerce-api.git)>
+cd <ECOM_API>
 ```
 
 ### 2. Create a virtual environment
