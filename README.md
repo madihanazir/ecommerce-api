@@ -1,5 +1,29 @@
 # E-commerce REST API - Implementation Documentation
 
+ECOM_API/
+├── config/                          # Django project configuration
+│   ├── asgi.py                     # ASGI configuration
+│   ├── middleware.py               # Custom middleware
+│   ├── settings.py                 # Django settings
+│   ├── urls.py                     # Project URL configuration
+│   └── wsgi.py                     # WSGI configuration
+├── tests/                          # Test suite
+│   ├── __pycache__/
+│   ├── test_atomic.py              # Database transaction tests
+│   ├── test_auth.py                # Authentication tests
+│   ├── test_crud.py                # CRUD operation tests
+│   └── test_response_f...          # Response format tests
+├── venv/                           # Python virtual environment
+│   ├── Include/
+│   ├── Lib/
+│   ├── Scripts/
+│   └── pyvenv.cfg
+├── .gitignore                      # Git ignore file
+├── requirements.txt                # Python dependencies
+├── .env                            # Environment variables (EXCLUDED FROM GIT)
+├── manage.py                       # Django management script
+└── (Future app directories)
+
 ## 🧪 Comprehensive Testing Report
 
 ### 📊 Test Suite Overview
