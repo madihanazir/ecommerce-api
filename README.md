@@ -1,5 +1,27 @@
 # E-commerce REST API - Implementation Documentation
 
+### Project Setup 
+-- ** # 1. Clone the repository**
+**git clone <your-repository-url>
+**cd <your-project-folder>
+
+-- ** # 2. Create virtual environment**
+python -m venv venv
+
+-- **# 3. Activate virtual environment**
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
+
+# 4. Install dependencies
+pip install -r requirements.txt
+
+# 5. Apply database migrations
+python manage.py migrate
+
+# 6. Start the development server
+python manage.py runserver
 
 ## 🧪 Comprehensive Testing Report
 
@@ -14,23 +36,19 @@
 
 # Test 1: Successful JWT Login
 ### `POST /api/v1/auth/login/`
-#### Request
-{\"email\": \"user@example.com\", \"password\": \"secure123\"}
-Response: 200 OK with access/refresh tokens
-Proof: Token shown above with valid expiration
+
 
 # Test 2: User Registration
 ### `POST /api/v1/auth/register/`
-Request: {\"email\": \"new@user.com\", \"password\": \"Test123!\", \"username\": \"newuser\"}
-Response: 201 Created with user profile (no password)
-\`\`\`
+
 
 #### ✅ Protected Endpoint Testing
 
 # Test 3: Access Profile with Valid Token
 ### `GET /api/v1/users/me/`
-Headers: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Response: 200 OK with user data
+**Headers: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+**Response: 200 OK with user data
 
 # Test 4: Access Without Token
 ### `GET /api/v1/users/me/`
@@ -234,11 +252,10 @@ Result: Order created with stock decrement
 ![Categories](screenshots/swagger_categories.png)
 
 
-### 🚀 Conclusion
-The e-commerce API successfully implements **all critical requirements**:
-- **Atomic transactions** with proven stock decrement
-- **Idempotency** with header-based duplicate prevention  
-- **Standardized error handling** (401, 403, 404, 409, 422)
-- **JWT authentication** with full token lifecycle
-- **Comprehensive testing** with 6 passing pytest cases
+
+
+### CHECK at http://127.0.0.1:8000/docs/#/ after setting up the project
+
+
+
 
