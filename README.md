@@ -227,6 +227,8 @@ Result: Order created with stock decrement
 
 ### 🔹 JWT Authorization Modal
 ![JWT Auth](screenshots/swagger_auth.png)
+![JWT Auth](screenshots/swagger_auth2.png)
+![JWT Auth](screenshots/swagger_auth3.png)
 
 ### 🔹 Categories Endpoint Response
 ![Categories](screenshots/swagger_categories.png)
