@@ -220,13 +220,17 @@ Result: Order created with stock decrement
 3. **Order Status Updates** - Admin endpoint exists but untested
 4. **Concurrent Race Conditions** - Atomicity proven, concurrency untested
 
-### Evidence Files Included
-1. \`atomic_decrement_proof.png\` - Stock before/after screenshots
-2. \`idempotency_error.png\` - 400 error for missing Idempotency-Key
-3. \`response_format.png\` - Standardized response format
-4. \`jwt_tokens.png\` - JWT authentication proof
-5. \`tests_passing.png\` - pytest execution results
-6. \`swagger_docs.png\` - OpenAPI documentation
+## 📸 API Documentation (Swagger UI)
+
+### 🔹 Swagger Overview
+![Swagger UI](screenshots/swagger_main.png)
+
+### 🔹 JWT Authorization Modal
+![JWT Auth](screenshots/swagger_auth.png)
+
+### 🔹 Categories Endpoint Response
+![Categories](screenshots/swagger_categories.png)
+
 
 ### 🚀 Conclusion
 The e-commerce API successfully implements **all critical requirements**:
