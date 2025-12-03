@@ -1,0 +1,705 @@
+{
+	"info": {
+		"_postman_id": "170f980d-99ba-47b4-afa7-bdd8de37fb8f",
+		"name": "Ecommerce API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42353066"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/v1/auth/login/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"madihan541@gmail.com\",\r\n  \"password\": \"123123madiha\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"madihan541@gmail.com\",\r\n  \"password\": \"123123madiha\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/users/me/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Njk4MTY1LCJpYXQiOjE3NjQ2OTc4NjUsImp0aSI6IjI3ZGM4NDRkODM3NzRiMmE4YmRiZDM0N2MwNGNjYzE3IiwidXNlcl9pZCI6ImM4NWFlZTUxLWU0NWMtNDI3Zi04MDJmLTI3ZjgxOGQ3MmU5NyJ9.I3bZH86ZJZ-ZQky8jx9U6axqXq6P4wTWUm35eis7P3Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/users/me/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"me",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/categories/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Njk4MTY1LCJpYXQiOjE3NjQ2OTc4NjUsImp0aSI6IjI3ZGM4NDRkODM3NzRiMmE4YmRiZDM0N2MwNGNjYzE3IiwidXNlcl9pZCI6ImM4NWFlZTUxLWU0NWMtNDI3Zi04MDJmLTI3ZjgxOGQ3MmU5NyJ9.I3bZH86ZJZ-ZQky8jx9U6axqXq6P4wTWUm35eis7P3Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Electronics\",\r\n  \"description\": \"All gadgets\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/categories/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"categories",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16f-8f8a0abc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"name\": \"beauty\",\r\n  \"description\": \"a brand\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000//api/v1/categories/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"categories",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/cart/items/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzQ4Mzc0LCJpYXQiOjE3NjQ3NDc0NzQsImp0aSI6ImQwMGRmNzM0YjFmYzQxZGU5ZDMyMGQ0MDFjOWU1NTEzIiwidXNlcl9pZCI6IjJmMWM2NDUyLTk4Y2ItNDVhMy05ZDJmLTZiMTA5ODk0MzMxYiJ9.PGHMVWhCIsFarIn9YwE_-x_hnM1J8a9CbPtl4L3lMLs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"stock\": 15}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/cart/items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/orders/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzQ4Mzc0LCJpYXQiOjE3NjQ3NDc0NzQsImp0aSI6ImQwMGRmNzM0YjFmYzQxZGU5ZDMyMGQ0MDFjOWU1NTEzIiwidXNlcl9pZCI6IjJmMWM2NDUyLTk4Y2ItNDVhMy05ZDJmLTZiMTA5ODk0MzMxYiJ9.PGHMVWhCIsFarIn9YwE_-x_hnM1J8a9CbPtl4L3lMLs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"stock\": 15}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/cart/items/add/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16f-8f8a0abc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": \"c64f1987-0aff-43b6-b16f-8f8a048d5334\",\r\n  \"quantity\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/cart/items/add/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						"items",
+						"add",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/cart/items/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": \"c64f1987-0aff-43b6-b16f-8f8a048d5334\",\r\n  \"quantity\": 5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/cart/items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/orders/create/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": \"c64f1987-0aff-43b6-b16f-8f8a048d5334\",\r\n  \"quantity\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/orders/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/orders/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzQ4Mzc0LCJpYXQiOjE3NjQ3NDc0NzQsImp0aSI6ImQwMGRmNzM0YjFmYzQxZGU5ZDMyMGQ0MDFjOWU1NTEzIiwidXNlcl9pZCI6IjJmMWM2NDUyLTk4Y2ItNDVhMy05ZDJmLTZiMTA5ODk0MzMxYiJ9.PGHMVWhCIsFarIn9YwE_-x_hnM1J8a9CbPtl4L3lMLs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16ddhdhbc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"stock\": 15}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/orders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/v1/users/me/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Njk4MTY1LCJpYXQiOjE3NjQ2OTc4NjUsImp0aSI6IjI3ZGM4NDRkODM3NzRiMmE4YmRiZDM0N2MwNGNjYzE3IiwidXNlcl9pZCI6ImM4NWFlZTUxLWU0NWMtNDI3Zi04MDJmLTI3ZjgxOGQ3MmU5NyJ9.I3bZH86ZJZ-ZQky8jx9U6axqXq6P4wTWUm35eis7P3Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/users/me/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"me",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000//api/v1/categories/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NzEzODM3LCJpYXQiOjE3NjQ3MTI5MzcsImp0aSI6IjdlODkwZmY3MjYwNTQ3MzBiZmMxMGQxZTE5NTg0OWNjIiwidXNlcl9pZCI6ImNjMzAzNzRlLThlMzItNDhjOS1hYjRmLTI4YmY5Nzg0MjU4NCJ9.iohyA1K4UOXHb0aucSAyNpEQhDpJftc84GRdadtHK_I\"",
+						"type": "text"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "nnnndd16f-8f8a0abc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"name\": \"beauty\",\r\n  \"description\": \"a brand\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000//api/v1/categories/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"categories",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
