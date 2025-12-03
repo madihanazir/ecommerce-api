@@ -10,7 +10,7 @@
 ### 🔐 Authentication Testing
 
 #### ✅ JWT Login/Register Testing
-\`\`\`bash
+
 # Test 1: Successful JWT Login
 POST /api/v1/auth/login/
 Request: {\"email\": \"user@example.com\", \"password\": \"secure123\"}
@@ -218,7 +218,7 @@ Result: Order created with stock decrement
 3. **Order Status Updates** - Admin endpoint exists but untested
 4. **Concurrent Race Conditions** - Atomicity proven, concurrency untested
 
-### 📸 Evidence Files Included
+### Evidence Files Included
 1. \`atomic_decrement_proof.png\` - Stock before/after screenshots
 2. \`idempotency_error.png\` - 400 error for missing Idempotency-Key
 3. \`response_format.png\` - Standardized response format
@@ -234,8 +234,3 @@ The e-commerce API successfully implements **all critical requirements**:
 - **JWT authentication** with full token lifecycle
 - **Comprehensive testing** with 6 passing pytest cases
 
-The implementation follows the exact specifications from the project document, with visual proof of atomicity and idempotency - the two most critical requirements for an e-commerce order system.
-"@ | Out-File -FilePath README.md -Encoding utf8
-
-# Verify it was created
-cat README.md | Select-Object -First 5
