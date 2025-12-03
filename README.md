@@ -19,7 +19,7 @@ Response: 200 OK with access/refresh tokens
 Proof: Token shown above with valid expiration
 
 # Test 2: User Registration
-POST /api/v1/auth/register/
+### `POST /api/v1/auth/register/`
 Request: {\"email\": \"new@user.com\", \"password\": \"Test123!\", \"username\": \"newuser\"}
 Response: 201 Created with user profile (no password)
 \`\`\`
@@ -27,12 +27,12 @@ Response: 201 Created with user profile (no password)
 #### ✅ Protected Endpoint Testing
 \`\`\`bash
 # Test 3: Access Profile with Valid Token
-GET /api/v1/users/me/
+### `GET /api/v1/users/me/`
 Headers: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 Response: 200 OK with user data
 
 # Test 4: Access Without Token
-GET /api/v1/users/me/
+### `GET /api/v1/users/me/`
 Response: 401 Unauthorized (correct error format)
 \`\`\`
 
@@ -93,7 +93,7 @@ Response: 401 Unauthorized (correct error format)
 
 #### ✅ Idempotency-Key Requirement
 \`\`\`bash
-POST /api/v1/orders/create/
+### `POST /api/v1/orders/create/`
 Headers: 
   Authorization: Bearer <token>
   Idempotency-Key: <required>  # Must be provided
@@ -109,7 +109,7 @@ Error: \"idempotency-key header required\"
 
 1. **First Request (New Order):**
 \`\`\`bash
-POST /api/v1/orders/create/
+### `POST /api/v1/orders/create/`
 Headers:
   Authorization: Bearer <token>
   Idempotency-Key: unique-order-123
@@ -121,7 +121,7 @@ Order ID: b9a73beb-a84e-4f13-98c9-e4038d1c8111
 
 2. **Second Request (Same Idempotency-Key):**
 \`\`\`bash
-POST /api/v1/orders/create/
+### `POST /api/v1/orders/create/`
 Headers:
   Authorization: Bearer <token>
   Idempotency-Key: unique-order-123  # SAME KEY
