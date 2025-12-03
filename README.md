@@ -136,7 +136,7 @@ python manage.py runserver
 
 ---
 
-### 🎯 Idempotency Implementation (CRITICAL FEATURE)
+### 🎯 Idempotency Implementation 
 
 #### ✅ Idempotency-Key Requirement
 
@@ -176,7 +176,7 @@ No duplicate order created; same response returned, ensuring idempotency.
 
 ---
 
-### ⚡ Atomic Transaction Implementation (CORE REQUIREMENT)
+### ⚡ Atomic Transaction Implementation 
 
 #### ✅ Atomic Order Creation Proof
 
@@ -235,7 +235,7 @@ No duplicate order created; same response returned, ensuring idempotency.
 
 ---
 
-## ⚠️ Untested Areas (Time Constraints)
+## ⚠️ Untested Areas 
 
 1. **Cart Item Update/Delete** – Needs specific item IDs  
 2. **Product Update/Delete** – Limited testing due to token expiration  
