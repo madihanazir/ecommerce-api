@@ -12,8 +12,9 @@
 #### ✅ JWT Login/Register Testing
 
 # Test 1: Successful JWT Login
-POST /api/v1/auth/login/
-Request: {\"email\": \"user@example.com\", \"password\": \"secure123\"}
+### `POST /api/v1/auth/login/`
+#### Request
+{\"email\": \"user@example.com\", \"password\": \"secure123\"}
 Response: 200 OK with access/refresh tokens
 Proof: Token shown above with valid expiration
 
