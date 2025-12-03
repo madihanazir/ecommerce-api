@@ -25,7 +25,7 @@ Response: 201 Created with user profile (no password)
 \`\`\`
 
 #### ✅ Protected Endpoint Testing
-\`\`\`bash
+
 # Test 3: Access Profile with Valid Token
 ### `GET /api/v1/users/me/`
 Headers: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
@@ -92,7 +92,7 @@ Response: 401 Unauthorized (correct error format)
 ### 🎯 Idempotency Implementation - CRITICAL FEATURE
 
 #### ✅ Idempotency-Key Requirement
-\`\`\`bash
+
 ### `POST /api/v1/orders/create/`
 Headers: 
   Authorization: Bearer <token>
@@ -108,7 +108,7 @@ Error: \"idempotency-key header required\"
 **Test Case:** Preventing duplicate orders
 
 1. **First Request (New Order):**
-\`\`\`bash
+   
 ### `POST /api/v1/orders/create/`
 Headers:
   Authorization: Bearer <token>
@@ -120,7 +120,7 @@ Order ID: b9a73beb-a84e-4f13-98c9-e4038d1c8111
 \`\`\`
 
 2. **Second Request (Same Idempotency-Key):**
-\`\`\`bash
+
 ### `POST /api/v1/orders/create/`
 Headers:
   Authorization: Bearer <token>
@@ -162,7 +162,7 @@ Returns: SAME Order ID: b9a73beb-a84e-4f13-98c9-e4038d1c8111
 \`\`\`
 
 2. **Order Creation Request:**
-\`\`\`bash
+
 POST /api/v1/orders/create/
 Idempotency-Key: test-atomic-123
 Result: Order created with stock decrement
