@@ -1,26 +1,26 @@
 # E-commerce REST API - Implementation Documentation
 
 ### Project Setup 
--- ** # 1. Clone the repository**
-**git clone <your-repository-url>
-**cd <your-project-folder>
+-- ### 1. Clone the repository
+git clone <your-repository-url>
+cd <your-project-folder>
 
--- ** # 2. Create virtual environment**
+--  ### 2. Create virtual environment
 python -m venv venv
 
--- **# 3. Activate virtual environment**
-# Windows:
+-- ### 3. Activate virtual environment
+### Windows:
 venv\Scripts\activate
-# macOS/Linux:
+### macOS/Linux:
 source venv/bin/activate
 
-# 4. Install dependencies
+### 4. Install dependencies
 pip install -r requirements.txt
 
-# 5. Apply database migrations
+### 5. Apply database migrations
 python manage.py migrate
 
-# 6. Start the development server
+### 6. Start the development server
 python manage.py runserver
 
 ## 🧪 Comprehensive Testing Report
