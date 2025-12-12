@@ -29,13 +29,17 @@ python -m venv venv
 ```sh
 pip install -r requirements.txt
 ```
+### 5. Make database migrations
+```sh
+python manage.py makemigrations
+```
 
-### 5. Apply database migrations
+### 6. Apply database migrations
 ```sh
 python manage.py migrate
 ```
 
-### 6. Start the development server
+### 7. Start the development server
 ```sh
 python manage.py runserver
 ```
