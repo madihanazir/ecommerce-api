@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     
     # 'cart',                  
     # 'orders',               
-    # 'common',                
+    # 'common',    
+    'rest_framework_simplejwt.token_blacklist',            
 ]
 
 # ---- REST FRAMEWORK CONFIG ----
