@@ -1,3 +1,4 @@
+from apps.users.permissions import IsAdmin
 from apps.cart.models import CartItem
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated

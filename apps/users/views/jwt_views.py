@@ -12,6 +12,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+from rest_framework.permissions import IsAuthenticated
+from apps.users.permissions import IsAdmin
+
+from apps.users.permissions import IsCustomer
+from ..jwt_serializers import CustomTokenObtainPairSerializer
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 
@@ -37,6 +48,18 @@ class LoginView(generics.GenericAPIView):
             "access": str(refresh.access_token),
             "refresh": str(refresh),
         })
+    
+class AdminOnlyView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
+
+    def get(self, request):
+        return Response({"message": "Welcome Admin"})
+    
+class CustomerView(APIView):
+    permission_classes = [IsAuthenticated, IsCustomer]
+
+    def get(self, request):
+        return Response({"message": "Welcome Customer"})
 
 
 class LogoutView(APIView):
