@@ -5,6 +5,7 @@ from apps.users.views import MeView
 from apps.users.views.jwt_views import CustomTokenObtainPairView
 from apps.users.views.user_views import VerifyTokenView
 from .views.user_views import UserProfileView 
+from apps.users.views.oauth_views import login_page, index_page
 
 #from .views import UserRegistrationView  
 
@@ -21,4 +22,9 @@ urlpatterns = [
     path('verify-token/', VerifyTokenView.as_view(), name='verify_token'),
     path('profile/', UserProfileView.as_view(), name='user_profile'),
    
+]
+
+urlpatterns += [
+    path("login/", login_page, name="login_page"),
+    path("index/", index_page, name="index_page"),
 ]

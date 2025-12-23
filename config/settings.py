@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     # 'cart',                  
     # 'orders',               
     # 'common',    
-    'rest_framework_simplejwt.token_blacklist',            
+    'rest_framework_simplejwt.token_blacklist',  
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",          
 ]
 
 # ---- REST FRAMEWORK CONFIG ----
@@ -65,9 +69,21 @@ SIMPLE_JWT = {
     "USERNAME_FIELD": "email",
 }
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+LOGIN_REDIRECT_URL = "/api/v1/index/"
+LOGOUT_REDIRECT_URL = "/api/v1/login/"
 
 
 DATABASES = {
@@ -102,6 +118,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
      'django.middleware.common.CommonMiddleware',
      'config.middleware.ResponseWrapperMiddleware',
+     'django.contrib.auth.middleware.AuthenticationMiddleware',
+     'allauth.account.middleware.AccountMiddleware',  
+
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
