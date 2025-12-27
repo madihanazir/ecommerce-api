@@ -3,6 +3,7 @@ from .models import Category, Product
 from .serializers import CategorySerializer, ProductSerializer
 from apps.users.permissions import IsAdminOrReadOnly
 from rest_framework.permissions import IsAuthenticated
+from apps.users.permissions import IsAdmin
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """
@@ -16,7 +17,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAdminUser()]
+            return [permissions.IsAuthenticated(), IsAdmin()]
         return [permissions.AllowAny()]
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -30,5 +31,5 @@ class ProductViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAdminUser()]
+            return [permissions.IsAuthenticated(), IsAdmin()]
         return [permissions.AllowAny()]

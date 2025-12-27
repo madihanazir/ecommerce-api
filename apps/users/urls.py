@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.users.views.jwt_views import RegisterView, LoginView, LogoutView
+from apps.users.views.jwt_views import AdminOnlyView, RegisterView, LoginView, LogoutView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from apps.users.views import MeView 
 from apps.users.views.jwt_views import CustomTokenObtainPairView
@@ -21,6 +21,7 @@ urlpatterns = [
     
     path('verify-token/', VerifyTokenView.as_view(), name='verify_token'),
     path('profile/', UserProfileView.as_view(), name='user_profile'),
+    path('admin-test/', AdminOnlyView.as_view(), name='admin_test'),
    
 ]
 
