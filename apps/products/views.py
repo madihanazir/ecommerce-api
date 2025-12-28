@@ -14,22 +14,24 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
-    
-    def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAuthenticated(), IsAdmin()]
-        return [permissions.AllowAny()]
+def get_permissions(self):
+        # GET, HEAD, OPTIONS: Anyone can view
+        if self.action in ['list', 'retrieve']:
+            return [AllowAny()]
+        # POST, PUT, DELETE: Only authenticated admins
+        return [IsAuthenticated(), IsAdminOrReadOnly()]
 
 class ProductViewSet(viewsets.ModelViewSet):
     """
     same logic
     """
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
+queryset = Product.objects.all()
+serializer_class = ProductSerializer
+permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
 
-    
-    def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAuthenticated(), IsAdmin()]
-        return [permissions.AllowAny()]
+def get_permissions(self):
+        # GET, HEAD, OPTIONS: Anyone can view
+        if self.action in ['list', 'retrieve']:
+            return [AllowAny()]
+        # POST, PUT, DELETE: Only authenticated admins
+        return [IsAuthenticated(), IsAdminOrReadOnly()]
