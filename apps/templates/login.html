@@ -1,4 +1,3 @@
-<!-- templates/login.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,15 +5,18 @@
 </head>
 <body>
     <h1>E-Commerce Login</h1>
-    <!-- JWT Login Form -->
+
+    <!-- JWT Login (API testing) -->
     <form action="/api/v1/auth/login/" method="post">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login with JWT</button>
     </form>
-    
-    <!-- Google OAuth Button -->
-    <a href="/api/v1/auth/google/">
+
+    <hr>
+
+    <!-- Google OAuth -->
+    <a href="/oauth/login/google-oauth2/">
         <button>Login with Google</button>
     </a>
 </body>

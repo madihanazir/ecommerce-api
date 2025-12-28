@@ -43,11 +43,9 @@ INSTALLED_APPS = [
     # 'orders',               
     # 'common',    
     'rest_framework_simplejwt.token_blacklist',  
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",  
-            
+
+    "social_django", 
+
 ]
 
 # ---- REST FRAMEWORK CONFIG ----
@@ -70,21 +68,18 @@ SIMPLE_JWT = {
     "USERNAME_FIELD": "email",
 }
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_VERIFICATION = "none"
-
-SOCIALACCOUNT_LOGIN_ON_GET = True
-
 AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
 ]
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 
-LOGIN_REDIRECT_URL = "/api/v1/index/"
-LOGOUT_REDIRECT_URL = "/api/v1/login/"
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+LOGIN_REDIRECT_URL = "/index/"
+LOGOUT_REDIRECT_URL = "/login/"
+
 
 
 DATABASES = {
@@ -129,7 +124,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "apps" / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,10 +132,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+LOGIN_REDIRECT_URL = "/index/"
+LOGOUT_REDIRECT_URL = "/login/"
+
 
 
 

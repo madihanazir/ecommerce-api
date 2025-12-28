@@ -23,4 +23,9 @@ urlpatterns = [
     path("docs/", SpectacularSwaggerView.as_view(url_name="schema")),
 
     path("accounts/", include("allauth.urls")),
+    
 ]
+urlpatterns += [
+    path("oauth/", include("social_django.urls", namespace="social")),
+]
+
