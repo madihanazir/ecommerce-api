@@ -25,7 +25,3 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     
 ]
-urlpatterns += [
-    path("oauth/", include("social_django.urls", namespace="social")),
-]
-

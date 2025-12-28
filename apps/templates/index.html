@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
+    <title>Welcome - E-Commerce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+            background: #f0f9ff;
+        }
+        .success-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin-top: 100px;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 28px;
+        }
+        .checkmark {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .user-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .logout-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>You are successfully logged in ✅</h1>
-    <p>Welcome to the E-Commerce Platform</p>
+    <div class="success-box">
+        <div class="checkmark">✅</div>
+        <h1>You are successfully logged in!</h1>
+        
+        {% if user %}
+        <div class="user-info">
+            <p><strong>Welcome, {{ user.name|default:user.username }}!</strong></p>
+            <p>Email: {{ user.email }}</p>
+            {% if user.role %}
+                <p>Role: {{ user.role }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <p>You can now access the e-commerce platform.</p>
+        
+        <a href="/api/v1/login/">
+            <button class="logout-btn">Logout</button>
+        </a>
+    </div>
 </body>
 </html>

@@ -22,6 +22,10 @@ urlpatterns = [
     path('verify-token/', VerifyTokenView.as_view(), name='verify_token'),
     path('profile/', UserProfileView.as_view(), name='user_profile'),
     path('admin-test/', AdminOnlyView.as_view(), name='admin_test'),
+     # DEMO OAuth endpoints
+    path("auth/google/", google_oauth_simple, name="google_login"),
+    path("auth/google/callback/", google_oauth_callback_simple, name="google_callback"),
+    path("demo-login/", lambda r: redirect("/api/v1/index/?demo=true")),
    
 ]
 
