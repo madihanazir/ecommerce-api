@@ -1,6 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.db import models
 import uuid
+from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
@@ -10,15 +11,15 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password)
-        user.save()
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, username, password=None):
         user = self.create_user(email, username, password)
         user.is_staff = True
         user.is_superuser = True
-        user.role = "admin"   # ✅ important for RBAC
-        user.save()
+        user.role = "admin"
+        user.save(using=self._db)
         return user
 
 
@@ -33,7 +34,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         ("user", "User"),
     ]
 
-    # ✅ FIXED: pass variable, NOT string
     role = models.CharField(
         max_length=20,
         choices=ROLE_CHOICES,
@@ -42,6 +42,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
+    email_verified = models.BooleanField(default=False)
+    email_verification_token = models.UUIDField(null=True, blank=True)
+    email_token_created_at = models.DateTimeField(null=True, blank=True)
+
+    password_reset_token = models.UUIDField(null=True, blank=True)
+    password_token_created_at = models.DateTimeField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 

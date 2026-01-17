@@ -22,6 +22,6 @@ urlpatterns = [
     path("docs/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("docs/", SpectacularSwaggerView.as_view(url_name="schema")),
 
-    path("accounts/", include("allauth.urls")),
+    #path("accounts/", include("allauth.urls")),
     
 ]

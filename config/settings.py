@@ -7,15 +7,14 @@ from datetime import timedelta
 
 # ---- BASE PROJECT CONFIG ----
 BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
+
 
 SECRET_KEY = "django-insecure-9x2&@l!f3$5p7d!jw#z9r!q2y_@k0^n1v&b4c9u_l$"
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
-# ---- INSTALLED APPS ----
 INSTALLED_APPS = [
-    # Django default apps
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,27 +25,17 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'drf_spectacular',
 
-# Local apps 
-'apps.users.apps.UsersConfig',
-# 'users',                 
-    # 'apps.users',            
-    # 'apps.users.apps.UsersConfig',  
-    
-    'products.apps.ProductsConfig',
+    # Local apps
+    'apps.users.apps.UsersConfig',
+    'apps.products.apps.ProductsConfig',
+
     'apps.cart.apps.CartConfig',
     'apps.orders.apps.OrdersConfig',
-
-    
-    # 'cart',                  
-    # 'orders',               
-    # 'common',    
-    'rest_framework_simplejwt.token_blacklist',  
-
-    "social_django", 
-
 ]
+
 
 # ---- REST FRAMEWORK CONFIG ----
 REST_FRAMEWORK = {
@@ -64,22 +53,23 @@ SIMPLE_JWT = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
+    "AUTH_COOKIE": "access_token",
     
     "USERNAME_FIELD": "email",
 }
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    #'allauth.account.auth_backends.AuthenticationBackend',
 ]
-SITE_ID = 1
+#SITE_ID = 1
 
-SOCIALACCOUNT_PROVIDERS = {
+'''SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "SCOPE": ["profile", "email"],
         "AUTH_PARAMS": {"access_type": "online"},
     }
-}
+}'''
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
@@ -87,8 +77,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
+GOOGLE_REDIRECT_URI = config("GOOGLE_REDIRECT_URI")
 LOGIN_REDIRECT_URL = "/index/"
 LOGOUT_REDIRECT_URL = "/login/"
+
+
+
 
 
 
@@ -125,7 +119,7 @@ MIDDLEWARE = [
      'django.middleware.common.CommonMiddleware',
      'config.middleware.ResponseWrapperMiddleware',
      'django.contrib.auth.middleware.AuthenticationMiddleware',
-     'allauth.account.middleware.AccountMiddleware',  
+     
 
 ]
 CORS_ALLOW_ALL_ORIGINS = True
@@ -139,13 +133,12 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
-            ],
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+],
+
         },
     },
 ]
@@ -170,3 +163,6 @@ ROOT_URLCONF = 'config.urls'
 
 # ---- DEFAULT AUTO FIELD ----
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "no-reply@ecom.com"

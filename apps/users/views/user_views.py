@@ -1,7 +1,8 @@
 from rest_framework import generics, permissions
 from apps.users.serializers import UserSerializer
-
+from django.shortcuts import render, redirect
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -58,3 +59,22 @@ class UserProfileView(APIView):
             'is_active': user.is_active,
             'date_joined': user.date_joined,
         })
+class IndexView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        if not request.session.get("oauth_user"):
+            return redirect("/api/v1/login/")
+        return render(request, "index.html")
+    
+def logout_view(request):
+    response = redirect("/api/v1/login/")
+    
+    # Clear JWT cookies
+    response.delete_cookie("access_token")
+    response.delete_cookie("refresh_token")
+    
+    # Clear session
+    request.session.flush()
+
+    return response
