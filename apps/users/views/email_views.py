@@ -16,7 +16,7 @@ class VerifyEmailView(APIView):
         if timezone.now() - user.email_token_created_at > timedelta(hours=24):
             return Response({"error": "Token expired"}, status=400)
 
-        user.is_verified = True
+        user.email_verified = True
         user.email_verification_token = None
         user.email_token_created_at = None
         user.save()

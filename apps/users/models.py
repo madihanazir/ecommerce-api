@@ -57,5 +57,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    @property
+    def is_verified(self):
+        return self.email_verified
+
     def __str__(self):
         return self.email
