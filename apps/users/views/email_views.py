@@ -7,7 +7,13 @@ from datetime import timedelta
 
 
 class VerifyEmailView(APIView):
+    def get(self, request, token):
+        return self._verify(token)
+
     def post(self, request, token):
+        return self._verify(token)
+
+    def _verify(self, token):
         try:
             user = User.objects.get(email_verification_token=token)
         except User.DoesNotExist:
@@ -17,10 +23,9 @@ class VerifyEmailView(APIView):
             return Response({"error": "Token expired"}, status=400)
 
         user.email_verified = True
-        user.is_active = True    
+        user.is_active = True          # 🔑 activate account
         user.email_verification_token = None
         user.email_token_created_at = None
         user.save()
 
         return Response({"message": "Email verified successfully"})
-
