@@ -17,6 +17,7 @@ class VerifyEmailView(APIView):
             return Response({"error": "Token expired"}, status=400)
 
         user.email_verified = True
+        user.is_active = True    
         user.email_verification_token = None
         user.email_token_created_at = None
         user.save()
