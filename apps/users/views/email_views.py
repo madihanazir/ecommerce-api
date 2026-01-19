@@ -7,7 +7,7 @@ from datetime import timedelta
 
 
 class VerifyEmailView(APIView):
-    def get(self, request, token):
+    def post(self, request, token):
         try:
             user = User.objects.get(email_verification_token=token)
         except User.DoesNotExist:
