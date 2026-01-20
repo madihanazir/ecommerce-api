@@ -42,6 +42,9 @@ class LoginView(generics.GenericAPIView):
         user = User.objects.filter(email=email).first()
         if not user or not user.check_password(password):
             return Response({"error": "Invalid credentials"}, status=401)
+        
+        if not user.email_verified:
+            return Response({"error": "Email not verified"}, status=403)
 
         refresh = RefreshToken.for_user(user)
         return Response({

@@ -17,7 +17,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         user.role = "user"
         user.is_active = False
+        user.email_verified = False
 
+  
         user.email_verification_token = uuid.uuid4()
         user.email_token_created_at = timezone.now()
 

@@ -8,10 +8,18 @@ class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         if not email:
             raise ValueError("Email is required.")
+
         email = self.normalize_email(email)
+
+        # FORCE SECURITY DEFAULTS 
+        if "is_active" not in extra_fields:
+            extra_fields["is_active"] = False
+        if "email_verified" not in extra_fields:
+            extra_fields["email_verified"] = False
+
         user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_superuser(self, email, username, password=None):
