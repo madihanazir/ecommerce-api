@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import User
+from django.core.mail import send_mail 
+from django.conf import settings
 import uuid
 from django.utils import timezone
 
@@ -24,6 +26,19 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.email_token_created_at = timezone.now()
 
         user.save()
+        # building verify link
+        verification_link = (
+            f"http://127.0.0.1:8000/api/v1/auth/verify-email/?token={user.email_verification_token}"
+        )
+
+        # Send email (console)
+        send_mail(
+            subject="Verify your email",
+            message=f"Click this link to verify your email:\n\n{verification_link}\n\nThis link will expire in 24 hours.\n\nBest regards,\nE-Commerce Team",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
         return user
     
 class ForgotPasswordSerializer(serializers.Serializer):

@@ -165,4 +165,4 @@ ROOT_URLCONF = 'config.urls'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "no-reply@ecom.com"
+DEFAULT_FROM_EMAIL = "no-reply@ecom.local"

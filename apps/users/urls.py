@@ -44,7 +44,7 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"),
 
     path("me/", MeView.as_view(), name="me"),
-    path("auth/verify-email/<uuid:token>/", VerifyEmailView.as_view()),
+    path("auth/verify-email/", VerifyEmailView.as_view()),
 
     path("auth/reset-password/<uuid:token>/", PasswordResetConfirmView.as_view()),
 
