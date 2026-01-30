@@ -150,7 +150,7 @@ python manage.py runserver
   - `Content-Type: application/json`
 
 **Without Idempotency-Key:**
-- Response: `400 Bad Request` (error: `"idempotency-key header required"`)
+- Response: `400 Bad Request` (error: "idempotency-key header required")
 
 #### ✅ Idempotency Proof Workflow
 
@@ -185,7 +185,7 @@ No duplicate order created; same response returned, ensuring idempotency.
 #### ✅ Atomic Order Creation Proof
 
 **Test Data:**
-- Product: `"table"` (ID: `c64f1987-0aff-43b6-b16f-8f8a048d5334`)
+- Product: "table" (ID: `c64f1987-0aff-43b6-b16f-8f8a048d5334`)
 - Stock: 8 units  
 - Order Quantity: 1 unit
 
@@ -244,7 +244,7 @@ No duplicate order created; same response returned, ensuring idempotency.
 1. **Cart Item Update/Delete** – Needs specific item IDs  
 2. **Product Update/Delete** – Limited testing due to token expiration  
 3. **Order Status Updates** – Admin endpoint exists but untested  
-4. **Concurrent Race Conditions** – Atomicity verified, concurrency untested  
+4. **Concurrent Race Conditions** – Atomicity verified, concurrency untested
 
 ---
 
@@ -264,3 +264,134 @@ No duplicate order created; same response returned, ensuring idempotency.
 ---
 
 > **Check at [`http://127.0.0.1:8000/docs/#/`](http://127.0.0.1:8000/docs/#/) after setting up the project**
+
+---
+
+## 🔐 Authentication & Security Module (New Features)
+
+This module implements a secure, production-grade authentication pipeline with email verification, JWT authentication, role-based access control, and password recovery.
+
+ Features Added
+
+- Email Verification on Registration
+
+  New users are created with:
+
+  - `is_active = False`
+  - `email_verified = False`
+
+  A unique verification token is generated.
+
+  Login is blocked until verification is complete.
+
+- JWT Authentication with Custom Claims
+
+  Access tokens include:
+
+  - `user_id`
+  - `email`
+  - `role`
+
+  Enables RBAC and downstream authorization.
+
+- Login Blocking Until Email Verified
+
+  Unverified users cannot obtain JWT tokens.
+
+  Enforced centrally in the JWT serializer.
+
+- Secure Password Reset Flow
+
+  Time-limited, single-use reset tokens.
+
+  Password confirmation enforced.
+
+  Token invalidated after successful reset.
+
+- Role-Based Access Control (RBAC)
+
+  Custom permissions:
+
+  - `IsAdmin`
+  - `IsCustomer`
+
+  Enforced on protected endpoints using JWT role claim.
+
+ Key Endpoints
+
+| Purpose         | Method | Endpoint                                             |
+|-----------------|--------|------------------------------------------------------|
+| Register        | POST   | `/api/v1/auth/register/`                             |
+| Verify Email    | GET/POST | `/api/v1/auth/verify-email/<uuid:token>/`          |
+| Login (JWT)     | POST   | `/api/v1/auth/login/`                                |
+| Refresh Token   | POST   | `/api/v1/auth/refresh/`                              |
+| Logout          | POST   | `/api/v1/auth/logout/`                               |
+| Forgot Password | POST   | `/api/v1/auth/password/forgot/`                      |
+| Reset Password  | POST   | `/api/v1/auth/password/reset/<uuid:token>/`         |
+
+ Security Guarantees
+
+- Email ownership is enforced: no login without verification.
+
+- No user enumeration: forgot password does not leak account existence.
+
+- Token safety:
+
+  - Email verification tokens are single-use and time-limited.
+
+  - Password reset tokens are single-use and invalidated after success.
+
+- Account activation control:
+
+  - Only verified users are marked `is_active = True`.
+
+- RBAC enforcement:
+
+  - Role is embedded in JWT and enforced at view level.
+
+ Architecture Notes
+
+User lifecycle:
+
+REGISTER
+  ↓
+is_active = False
+email_verified = False
+(token generated)
+  ↓
+VERIFY EMAIL
+  ↓
+is_active = True
+email_verified = True
+token cleared
+  ↓
+LOGIN ENABLED
+
+Centralized enforcement:
+
+Login restrictions are enforced in:
+
+`CustomTokenObtainPairSerializer.validate()`
+
+Ensures no alternate login path can bypass verification.
+
+ Evaluation Checklist
+
+To validate this module:
+
+- Register a new user → account inactive
+- Attempt login → blocked
+- Verify email → account activated
+- Login → JWT issued with role claim
+- Forgot password → token generated, no info leak
+- Reset password → token invalidated
+- Reuse token → blocked
+
+---
+
+
+
+Notes:
+- Verification/reset tokens are single-use and time-limited.
+- Login enforcement is centralized (JWT serializer / token obtain logic) to prevent bypass.
+- Role claim in JWT supports RBAC checks on protected endpoints.
