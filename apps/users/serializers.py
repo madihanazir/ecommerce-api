@@ -1,9 +1,10 @@
+import secrets
 from rest_framework import serializers
 from .models import User
 from django.core.mail import send_mail 
 from django.conf import settings
-import uuid
 from django.utils import timezone
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -22,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.email_verified = False
 
   
-        user.email_verification_token = uuid.uuid4()
+        user.email_verification_token = secrets.token_urlsafe(32)
         user.email_token_created_at = timezone.now()
 
         user.save()

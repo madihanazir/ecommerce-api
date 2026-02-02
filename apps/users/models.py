@@ -4,6 +4,7 @@ import uuid
 from django.utils import timezone
 
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         if not email:
@@ -52,7 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     email_verified = models.BooleanField(default=False)
-    email_verification_token = models.UUIDField(null=True, blank=True)
+    email_verification_token = models.CharField(max_length=255, null=True, blank=True)
     email_token_created_at = models.DateTimeField(null=True, blank=True)
 
     password_reset_token = models.UUIDField(null=True, blank=True)
