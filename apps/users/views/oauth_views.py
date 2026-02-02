@@ -12,7 +12,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework import status
 
 from rest_framework_simplejwt.tokens import RefreshToken
-from apps.users.models import User
+
 
 
 class GoogleOAuthInitView(APIView):
@@ -67,10 +67,26 @@ class GoogleOAuthCallbackView(APIView):
         token_res.raise_for_status()
         access_token = token_res.json()["access_token"]
 
+         # Fetch Google profile
+        profile_res = requests.get(
+            "https://www.googleapis.com/oauth2/v2/userinfo",
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=10,
+        )
+        profile_res.raise_for_status()
+        profile = profile_res.json()
+
+        email = profile.get("email")
+        google_sub = profile.get("id") or profile.get("sub")
+
+        if not email or not google_sub:
+            return redirect("/api/v1/login/?error=invalid_profile")
+
+
        # 1. Check OAuth account first
         oauth_account = OAuthAccount.objects.filter(
             provider="google",
-            provider_account_id= google_sub,
+            provider_user_id= google_sub,
         ).select_related("user").first()
 
         if oauth_account:
@@ -90,7 +106,7 @@ class GoogleOAuthCallbackView(APIView):
             OAuthAccount.objects.create(
                 user=user,
                 provider="google",
-                provider_account_id=google_sub,
+                provider_user_id=google_sub,
             )
 
 
