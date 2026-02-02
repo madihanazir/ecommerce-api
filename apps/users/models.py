@@ -30,6 +30,9 @@ class UserManager(BaseUserManager):
         user.role = "admin"
         user.save(using=self._db)
         return user
+    
+
+
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -72,3 +75,25 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+class OAuthAccount(models.Model):
+    PROVIDER_CHOICES = (
+        ("google", "Google"),
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="oauth_accounts"
+    )
+    provider = models.CharField(max_length=50, choices=PROVIDER_CHOICES)
+    provider_user_id = models.CharField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("provider", "provider_user_id")
+
+    def __str__(self):
+        return f"{self.provider}:{self.user.email}"
+
+

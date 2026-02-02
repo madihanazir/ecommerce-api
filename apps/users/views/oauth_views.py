@@ -1,5 +1,5 @@
 # apps/users/views/oauth_views.py
-
+from apps.users.models import User, OAuthAccount
 import secrets
 import requests
 from urllib.parse import urlencode
@@ -67,29 +67,32 @@ class GoogleOAuthCallbackView(APIView):
         token_res.raise_for_status()
         access_token = token_res.json()["access_token"]
 
-        # Fetch user profile
-        profile_res = requests.get(
-            "https://www.googleapis.com/oauth2/v2/userinfo",
-            headers={"Authorization": f"Bearer {access_token}"},
-            timeout=10,
-        )
+       # 1. Check OAuth account first
+        oauth_account = OAuthAccount.objects.filter(
+            provider="google",
+            provider_account_id= google_sub,
+        ).select_related("user").first()
 
-        profile_res.raise_for_status()
-        profile = profile_res.json()
+        if oauth_account:
+            user = oauth_account.user
+        else:
+            # 2. Create or get user by email
+            user, created = User.objects.get_or_create(
+                email=email,
+                defaults={
+                    "username": email.split("@")[0],
+                    "is_active": True,
+                    "email_verified": True,
+                },
+            )
 
-        email = profile.get("email")
-        if not email:
-            return redirect("/api/v1/login/?error=no_email")
+            # 3. Link OAuth identity
+            OAuthAccount.objects.create(
+                user=user,
+                provider="google",
+                provider_account_id=google_sub,
+            )
 
-        # Create or fetch user
-        user, _ = User.objects.get_or_create(
-            email=email,
-            defaults={
-                "username": email.split("@")[0],
-                "role": "customer",
-                "is_active": True,
-            },
-        )
 
         # Issue JWT
         
