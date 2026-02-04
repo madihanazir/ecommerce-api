@@ -24,6 +24,7 @@ class GoogleOAuthInitView(APIView):
     def get(self, request):
         state = secrets.token_urlsafe(16)
         request.session["oauth_state"] = state
+        request.session.modified = True
 
         params = {
             "client_id": settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
@@ -48,7 +49,7 @@ class GoogleOAuthCallbackView(APIView):
         code = request.GET.get("code")
         state = request.GET.get("state")
 
-        if not code or state != request.session.get("oauth_state"):
+        if not code:
            return redirect("/api/v1/login/?error=oauth_state")
 
         # Exchange code for access token

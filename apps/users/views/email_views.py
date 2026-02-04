@@ -4,9 +4,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from apps.users.models import User
 from datetime import timedelta
+from rest_framework.permissions import AllowAny 
 
 
 class VerifyEmailView(APIView):
+    permission_classes = [AllowAny] 
     def get(self, request):
         token = request.query_params.get("token")
         return self._verify(token)
